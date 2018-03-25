@@ -27,14 +27,11 @@ enum RBTreeError rbtree_init(struct RBTree** tree);
 
 enum RBTreeError rbtree_insert(struct RBTree** tree,
                                int             value,
-                               int             partial_results);
-
-// This is just a debug function so it is not optimized for speed or memory (it can use recursion!)
-void rbtree_verify(const struct RBTree* tree, int expected_size);
+                               int             debug_info);
 
 enum RBTreeError rbtree_remove(struct RBTree** tree,
                                int             value,
-                               int             partial_results);
+                               int             debug_info);
 
 void rbtree_destroy(struct RBTree** tree);
 

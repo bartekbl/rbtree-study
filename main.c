@@ -1,5 +1,6 @@
 #include "rbtree.h"
 #include "rbtree-dump.h"
+#include "rbtree-verify.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -13,6 +14,8 @@ int main(int argc, char* argv[])
     struct RBTree* root = NULL;
 
     rbtree_init(&root);
+    rbtree_verify(root, -1);
+    rbtree_dump(root); fflush(stdout);
     FILE* testfile = fopen("test.txt", "r");
     while (1)
     {
@@ -22,15 +25,17 @@ int main(int argc, char* argv[])
         if (ret != 2) break;
         if (!strcmp(buf, "insert"))
         {
+            printf("insert %d\n", value);
             rbtree_insert(&root, value, 0);
         }
         if (!strcmp(buf, "remove"))
         {
+            printf("remove %d\n", value);
             rbtree_remove(&root, value, 0);
         }
+        rbtree_verify(root, -1);
+        rbtree_dump(root); fflush(stdout);
     }
-    rbtree_verify(root, -1);
-    rbtree_dump(root); fflush(stdout);
     rbtree_remove(&root, 61, 1);
     rbtree_verify(root, -1);
     rbtree_dump(root); fflush(stdout);
