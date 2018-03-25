@@ -119,7 +119,7 @@ static void rbtree_remove_cut_out_black_node(struct RBTree** tree, struct RBTree
 
 static enum RBTreeError rbtree_remove_free_residual_node_and_terminate(struct RBTree** tree, struct RBTree* to_delete)
 {
-    assert (to_delete->parent != NULL);
+//    assert (to_delete->parent != NULL);
     assert (to_delete->left == NULL);
     assert (to_delete->right == NULL);
 
