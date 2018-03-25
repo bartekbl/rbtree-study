@@ -14,3 +14,7 @@ HEADERS += \
     rbtree-dump.h \
     rbtree-verify.h \
     rbtree-internal.h
+
+DISTFILES += \
+    LICENSE \
+    README

@@ -6,6 +6,7 @@ enum RBTreeError
     RBTREE_NO_ERROR                   =  0,
     RBTREE_INSERT_ERROR_CANT_ALLOCATE = -1,
     RBTREE_REMOVE_ERROR_NOT_FOUND     = -2,
+    RBTREE_INSERT_ERROR_DUPLICATE     = -3,
 };
 
 enum RBTreeColor

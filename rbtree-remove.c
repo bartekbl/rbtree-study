@@ -97,7 +97,7 @@ static void rbtree_remove_find_replacement_and_swap(struct RBTree** tree, struct
     }
 }
 
-static void rbtree_remove_cut_out_black_node(struct RBTree** tree, struct RBTree* cursor)
+static enum RBTreeError rbtree_remove_cut_out_black_node(struct RBTree** tree, struct RBTree* cursor)
 {
     assert (cursor->left == NULL || cursor->right == NULL);
     assert (cursor->left != NULL || cursor->right != NULL);
@@ -115,6 +115,7 @@ static void rbtree_remove_cut_out_black_node(struct RBTree** tree, struct RBTree
 
     child->color = RBTREE_COLOR_BLACK;
     free(cursor);
+    return RBTREE_NO_ERROR;
 }
 
 static enum RBTreeError rbtree_remove_free_residual_node_and_terminate(struct RBTree** tree, struct RBTree* to_delete)
@@ -156,13 +157,11 @@ enum RBTreeError rbtree_remove(struct RBTree** tree,
     assert (cursor->left == NULL || cursor->right == NULL);
     if (cursor->color == RBTREE_COLOR_RED)
     {
-        rbtree_remove_free_residual_node_and_terminate(tree, cursor);
-        return RBTREE_NO_ERROR;
+        return rbtree_remove_free_residual_node_and_terminate(tree, cursor);
     }
     if (cursor->color == RBTREE_COLOR_BLACK && (cursor->left != NULL || cursor->right != NULL))
     {
-        rbtree_remove_cut_out_black_node(tree, cursor);
-        return RBTREE_NO_ERROR;
+        return rbtree_remove_cut_out_black_node(tree, cursor);
     }
 
     assert (cursor->left == NULL);
