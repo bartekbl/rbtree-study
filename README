@@ -1,0 +1,3 @@
+This is my study on red/black trees. I implemented them myself so that I know how they work and am able to use them in my projects.
+
+The file "main.c" contains test cases. It is also able to read test case from file "test.txt". At the end there is also a fuzzer that feeds the tree with random data. If fuzzer finds an error simply copy console output, filter it for lines starting with "insert" or "remove" and than save it as test.txt so that you can reproduce an error later or send it to me.
